@@ -308,5 +308,18 @@ This library uses libgpiod (LGPL-2.1) via FFI bindings. The library itself is MI
 
 ## Contributing
 
-[Add contribution guidelines here]
+Contributions are welcome! Here's how to get started:
+
+1. **Fork the repository** and create a branch for your changes
+2. **Make your changes** - keep code style consistent with the existing codebase
+3. **Test your changes** - make sure examples still work and test on a Raspberry Pi if possible
+4. **Submit a pull request** with a clear description of what you changed and why
+
+**Guidelines:**
+- Code should be TypeScript and work with Bun (not Node.js)
+- Keep the API simple and consistent with existing patterns
+- Add examples if you're introducing new features
+- Update documentation as needed
+
+Thanks for contributing! 🍞
 
