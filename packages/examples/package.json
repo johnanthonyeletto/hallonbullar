@@ -1,6 +1,7 @@
 {
   "name": "examples",
   "module": "src/index.ts",
+  "license": "MIT",
   "devDependencies": {
     "@types/bun": "latest"
   },

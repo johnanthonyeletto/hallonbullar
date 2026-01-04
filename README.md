@@ -302,7 +302,9 @@ The library throws descriptive errors for common issues:
 
 ## License
 
-[Add your license here]
+MIT License - see [LICENSE](LICENSE) file for details.
+
+This library uses libgpiod (LGPL-2.1) via FFI bindings. The library itself is MIT licensed.
 
 ## Contributing
 
