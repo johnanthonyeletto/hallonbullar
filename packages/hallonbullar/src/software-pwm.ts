@@ -23,11 +23,11 @@ export class SoftwarePWM {
 
   constructor(
     output: GPIOOutput,
-    options: PWMChannelOptions = { dutyCycle: 0.5, frequencyHz: 1000 }
+    options: PWMChannelOptions = { dutyCycle: 0.5, frequencyHz: 100 }
   ) {
     this.output = output;
     this._dutyCycle = options.dutyCycle ?? 0.5;
-    this._frequencyHz = options.frequencyHz ?? 1000;
+    this._frequencyHz = options.frequencyHz ?? 100;
 
     // Validate inputs
     if (this._dutyCycle < 0 || this._dutyCycle > 1) {

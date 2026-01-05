@@ -4,7 +4,6 @@ const chip = new GPIO("/dev/gpiochip0");
 
 const led = chip.output(17);
 
-// Use 100Hz - high enough to avoid visible flicker, low enough for setTimeout accuracy
 const pwm = new SoftwarePWM(led);
 
 process.on("SIGINT", () => {
@@ -20,9 +19,8 @@ setInterval(() => {
   const next =
     Math.round((pwm.dutyCycle + (isIncreasing ? 0.01 : -0.01)) * 100) / 100;
 
-  console.log(pwm.dutyCycle);
-
   pwm.setDutyCycle(Math.max(0, Math.min(1, next)));
+
   if (pwm.dutyCycle >= 1) {
     isIncreasing = false;
   }
