@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RGB</title>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="color-picker"></div>
+    <script>
+      const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+      const wsUrl = `${protocol}//${window.location.host}/ws`;
+      const socket = new WebSocket(wsUrl);
+
+      socket.addEventListener("open", () => {
+        console.log("WebSocket connected");
+      });
+
+      socket.addEventListener("error", (error) => {
+        console.error("WebSocket error:", error);
+      });
+
+      socket.addEventListener("close", () => {
+        console.log("WebSocket disconnected");
+      });
+
+      const colorPicker = new iro.ColorPicker("#color-picker", {
+        color: "#ffffff",
+        width: 320,
+        layout: [
+          {
+            component: iro.ui.Wheel,
+            options: {},
+          },
+        ],
+      });
+
+      colorPicker.on("color:change", (color) => {
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.send(color.rgbString);
+        } else {
+          console.warn("WebSocket not ready, state:", socket.readyState);
+        }
+      });
+    </script>
+  </body>
+</html>
